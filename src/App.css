@@ -1,3 +1,21 @@
 .social-icon{
-  
+  margin: 0 5px;
+}
+
+
+.Title{
+    height: 168px;
+    font-size: 48px;
+}
+
+.MyLoginForm{
+  width: 40%;
+  margin: 20px 190px;
+  height: 300px;
+
+}
+.SignUpForm{
+  width: 40%;
+  margin: 20px 190px;
+  /* height: 300px; */
 }
