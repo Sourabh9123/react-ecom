@@ -15,6 +15,7 @@ import Home from "./components/Home";
 import ContactUs from "./components/ContactUs";
 import LoginForm from "./components/Authentications/LoginForm";
 import Logout from "./components/Authentications/Logout";
+import Cart from "./components/Cart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<LoginForm />} />
       <Route path="sign-up" element={<SignUpForm />} />
       <Route path="logout" element={<Logout />} />
+      <Route path="cart" element={<Cart />} />
     </Route>
   )
 );

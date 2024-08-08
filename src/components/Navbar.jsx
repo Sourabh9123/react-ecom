@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { login } from "../store/authSlice";
+import { useState } from "react";
+import { IoMdCart } from "react-icons/io";
 
 function Navbar() {
+  const is_login = useSelector((state) => state.authentication.is_login);
+
+  console.log(is_login, "is_login");
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -32,24 +40,35 @@ function Navbar() {
                   About
                 </a>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="login">
-                  LogIn
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="logout">
-                  Logout
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="sign-up">
-                  SignUp
-                </Link>
-              </li>
+              {is_login ? (
+                <li className="nav-item">
+                  <Link className="nav-link" to="logout">
+                    Logout
+                  </Link>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="login">
+                      LogIn
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="sign-up">
+                      SignUp
+                    </Link>
+                  </li>
+                </>
+              )}
+
               <li className="nav-item">
                 <Link className="nav-link" to="contact-us">
                   ContactUs
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="cart">
+                  <IoMdCart />
                 </Link>
               </li>
             </ul>
