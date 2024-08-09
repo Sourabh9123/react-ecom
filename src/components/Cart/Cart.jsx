@@ -4,14 +4,15 @@ import { useSelector } from "react-redux";
 import { login } from "../../store/authSlice";
 import axios from "axios";
 import RemoveFromCart from "./RemoveFromCart";
+import { useDispatch } from "react-redux";
 
 function Cart() {
   const token = useSelector((state) => state.authentication.access_token);
+
   const [cartTotal, setCartTotal] = useState(0);
   const [cartItems, setCartItems] = useState([]);
-  const removeClicked = () => {
-    console.log("remove clicked");
-  };
+  const dispatch = useDispatch();
+
   // console.log(token);
 
   useEffect(() => {
@@ -36,7 +37,13 @@ function Cart() {
     if (token) {
       cart_item();
     }
-  }, [token, removeClicked]);
+  }, [token]);
+
+  const handleRemoveFromCart = (removedProductId) => {
+    setCartItems((prevItems) =>
+      prevItems.filter((item) => item.product.id !== removedProductId)
+    );
+  };
 
   return (
     <>
@@ -56,11 +63,12 @@ function Cart() {
                   <h6 className="card-title">{item.product.name}</h6>
                   <h6 className="card-title"> &#8377; {item.product.price}</h6>
                   <p className="card-text">{item.product.discription}</p>
-                  <button className="btn btn-primary mx-2">Buy Now</button>
+
+                  <a className="btn btn-primary mx-2">Buy Now</a>
                   {/* need to make buy now component which only return a button which has onclik to buy */}
                   <RemoveFromCart
                     product_id={item.product.id}
-                    // onRemove={() => removeClicked}
+                    onRemove={handleRemoveFromCart}
                   />
                 </div>
               </div>

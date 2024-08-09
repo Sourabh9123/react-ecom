@@ -1,11 +1,10 @@
 import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
-function RemoveFromCart({ product_id }) {
+function RemoveFromCart({ product_id, onRemove }) {
   const token = useSelector((state) => state.authentication.access_token);
-  console.log(token);
-  console.log(product_id);
 
   const handOnclikRemove = async () => {
     const url = `http://localhost:8000/api/cart/addcart/${product_id}/`;
@@ -19,14 +18,14 @@ function RemoveFromCart({ product_id }) {
 
     if (response.status === 204) {
       console.log(response);
+      onRemove(product_id);
     }
   };
+
   return (
-    <div>
-      <button onClick={handOnclikRemove} className="btn btn-primary mx-2">
-        Remove
-      </button>
-    </div>
+    <button onClick={handOnclikRemove} className="btn btn-primary mx-2">
+      Remove
+    </button>
   );
 }
 
