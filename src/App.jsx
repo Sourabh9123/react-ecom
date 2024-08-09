@@ -15,7 +15,7 @@ import Home from "./components/Home";
 import ContactUs from "./components/ContactUs";
 import LoginForm from "./components/Authentications/LoginForm";
 import Logout from "./components/Authentications/Logout";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

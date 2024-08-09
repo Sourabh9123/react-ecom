@@ -24,6 +24,8 @@ const  authSlice = createSlice({
             state.first_name = action.payload.first_name;
             state.last_name = action.payload.last_name;
             state.is_login = true;
+
+            // console.log(state.access_token, state.refresh_token)
            
 
         },
