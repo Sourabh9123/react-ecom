@@ -24,7 +24,15 @@ function AddToCart({ product_id }) {
 
   return (
     <>
-      <button onClick={() => handleAddToCart()} className="btn btn-primary">
+      <button
+        onClick={() => handleAddToCart()}
+        className="btn btn-danger btn-sm  ms-1"
+        style={{
+          "--bs-btn-padding-y": ".20rem",
+          "--bs-btn-padding-x": ".4rem",
+          "--bs-btn-font-size": ".50rem",
+        }}
+      >
         Add To Cart
       </button>
     </>

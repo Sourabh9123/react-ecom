@@ -1,11 +1,11 @@
-
+import Product from "./products/Product";
 
 const Home = () => {
-    return (
-        <><div  className="Title">This Is Home Page</div></>
-    );
-}
-
+  return (
+    <>
+      <Product />
+    </>
+  );
+};
 
 export default Home;
-

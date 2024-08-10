@@ -11,7 +11,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-sm bg-body-tertiary mb-4">
         <div className="container-fluid">
           <Link className="nav-link active" aria-current="page" to="/">
             Ecom

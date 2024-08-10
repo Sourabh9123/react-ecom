@@ -19,7 +19,7 @@ function LoginForm() {
     event.preventDefault();
     const email_address = email.current.value;
     const passowrd_ = password.current.value;
-    console.log(email_address, passowrd_);
+    // console.log(email_address, passowrd_);
     //  "make api call here" then navigate to home
 
     try {
@@ -31,7 +31,7 @@ function LoginForm() {
         }
       );
       if (response.status === 200) {
-        console.log(response.data);
+        // console.log(response.data);
 
         const access_token = response.data.token.access;
         const refresh_token = response.data.token.refresh;

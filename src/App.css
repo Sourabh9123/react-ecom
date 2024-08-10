@@ -3,11 +3,10 @@
 }
 
 
-.Title{
-    height: 168px;
-    font-size: 48px;
+.cus-img{
+  width: 180px;
+  height: auto;
 }
-
 .MyLoginForm{
   width: 40%;
   margin: 20px 190px;
