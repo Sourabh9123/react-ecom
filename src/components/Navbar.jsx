@@ -36,9 +36,9 @@ function Navbar() {
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  About
-                </a>
+                <Link className="nav-link" to="product-page">
+                  Product-Page
+                </Link>
               </li>
               {is_login ? (
                 <li className="nav-item">

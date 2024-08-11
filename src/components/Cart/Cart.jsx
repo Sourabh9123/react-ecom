@@ -26,7 +26,7 @@ function Cart() {
         });
 
         if (response.status === 200) {
-          // console.log(response.data);
+          console.log(response.data);
           setCartTotal(response.data.cart_total);
           setCartItems(response.data.cart_item);
         }
