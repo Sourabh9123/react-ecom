@@ -16,7 +16,8 @@ import ContactUs from "./components/ContactUs";
 import LoginForm from "./components/Authentications/LoginForm";
 import Logout from "./components/Authentications/Logout";
 import Cart from "./components/Cart/Cart";
-import ProductPage from "./components/products/ProductPage";
+import ProductDetails from "./components/products/ProductDetails";
+import InfoPage from "./components/Info/InfoPage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,7 +28,8 @@ const router = createBrowserRouter(
       <Route path="sign-up" element={<SignUpForm />} />
       <Route path="logout" element={<Logout />} />
       <Route path="cart" element={<Cart />} />
-      <Route path="product-page" element={<ProductPage />} />
+      <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="info" element={<InfoPage />} />
     </Route>
   )
 );

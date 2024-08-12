@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddToCart from "../Cart/AddToCart";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Product = () => {
   const [productItems, setProductItems] = useState([]);
@@ -26,12 +27,14 @@ const Product = () => {
           {productItems.map((item) => (
             <div className="col-2 mt-2" key={item.id}>
               <div className="card" style={{ width: "9rem" }}>
-                <img
-                  src={item.image || "image.png"}
-                  className="card-img-top"
-                  style={{ width: "9rem" }}
-                  alt={item.name}
-                />
+                <Link to={`/product/${item.id}`}>
+                  <img
+                    src={item.image || "image.png"}
+                    className="card-img-top"
+                    style={{ width: "9rem" }}
+                    alt={item.name}
+                  />
+                </Link>
                 <div className="card-body">
                   <p
                     className="card-title"

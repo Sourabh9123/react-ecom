@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { login } from "../store/authSlice";
 import { useState } from "react";
 import { IoMdCart } from "react-icons/io";
+import { FaPersonBreastfeeding } from "react-icons/fa6";
 
 function Navbar() {
   const is_login = useSelector((state) => state.authentication.is_login);
@@ -35,11 +36,6 @@ function Navbar() {
                 </Link>
               </li>
 
-              <li className="nav-item">
-                <Link className="nav-link" to="product-page">
-                  Product-Page
-                </Link>
-              </li>
               {is_login ? (
                 <li className="nav-item">
                   <Link className="nav-link" to="logout">
@@ -69,6 +65,12 @@ function Navbar() {
               <li className="nav-item">
                 <Link className="nav-link" to="cart">
                   <IoMdCart /> Cart
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link className="nav-link" to="info">
+                  <FaPersonBreastfeeding /> Info
                 </Link>
               </li>
             </ul>
