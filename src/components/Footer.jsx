@@ -22,7 +22,15 @@ function Footer() {
 
         <ul className="nav col-md-4 justify-content-end list-unstyled d-flex ">
           <li className="social-icon">
-            <FaInstagram style={{ fontSize: "25px" }} />
+            <FaInstagram
+              style={{ fontSize: "25px" }}
+              onClick={() => {
+                window.open(
+                  "https://www.instagram.com/sourabh_das1/",
+                  "_blank"
+                );
+              }}
+            />
           </li>
           <li className="social-icon">
             <FaFacebook style={{ fontSize: "25px" }} />

@@ -10,7 +10,20 @@ const initialState = {
     data : []
 }
 
+export const deleteAddress = createAsyncThunk( "deleteAddress", async (address_id, {getState}) => {
+    const state = getState()
 
+    const url = `http://localhost:8000/api/cart/address/${address_id}/`;
+    console.log(url)
+    const token = state.authentication.access_token
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      };
+    const response = await axios.delete(url, {headers})
+    return  response.data
+
+})
 
 export const createAddress = createAsyncThunk( "createAddress", async (data, { getState}) => {
     const state = getState();
@@ -88,7 +101,32 @@ const AddressSlice = createSlice({
             state.error_message = action.error.message;
             console.error("Failed to post address:", action.error.message);
            })
-    }
+
+           // Delete Request
+
+           
+           builder.addCase(deleteAddress.pending ,(state, action)=>{
+            state.is_error = false,
+            state.is_loading = true
+                
+           } )
+           builder.addCase(deleteAddress.fulfilled, (state, action)=> {
+            state.is_error = false,
+            state.is_loading = false
+            state.data.push(action.payload);
+           })
+           builder.addCase(deleteAddress.rejected, (state, action) => {
+            state.is_error = true;
+            state.is_loading = false;
+            state.error_message = action.error.message;
+            console.error("Failed to post address:", action.error.message);
+           })
+
+
+    }       
+
+
+
 
 })
 

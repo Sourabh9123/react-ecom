@@ -3,6 +3,16 @@
 }
 
 
+.address-info{
+  width: 320px;
+  background: rgb(210, 196, 196);
+  height: 225px;
+  font-size: x-small;
+  padding: inherit;
+  padding: 11px;
+  margin: 10px;
+}
+
 .cus-img{
   width: 180px;
   height: auto;
