@@ -3,12 +3,14 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AddToCart from "../Cart/AddToCart";
+import PaymentComponent from "../../components/payments/RazorpayPayment";
 
 function ProductDetails() {
   const { id } = useParams();
 
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -26,6 +28,8 @@ function ProductDetails() {
     };
     fetchProduct();
   }, [id]);
+
+  console.log(product.id);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -59,6 +63,7 @@ function ProductDetails() {
               <strong>Quantity in stock:</strong> {product.product_quantity}
             </p>
             <button className="btn btn-primary">Buy Now</button>
+            <PaymentComponent product_id={product.id} />
             <AddToCart product_id={id} />
           </div>
         </div>

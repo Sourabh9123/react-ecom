@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { login } from "../../store/authSlice";
-import axios from "axios";
-import RemoveFromCart from "./RemoveFromCart";
+
 import { useDispatch } from "react-redux";
 import { featchCart, deleteCartItem } from "../../store/CartSlice";
 
@@ -70,8 +68,7 @@ function Cart() {
                     className="btn btn-primary "
                     onClick={() => handelCartitemDelete(item.product.id)}
                   >
-                    {" "}
-                    Delete{" "}
+                    Delete
                   </button>
                 </div>
               </div>
