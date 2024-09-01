@@ -34,7 +34,7 @@ function Cart() {
     }
   }, [status, is_error, items]);
 
-  const handelCartitemDelete = async (item_id) => {
+  const handleCartitemDelete = async (item_id) => {
     try {
       await dispatch(deleteCartItem(item_id)).unwrap();
       // Refetch the cart after deletion
