@@ -7,6 +7,58 @@ const initialState = {
   paymentSuccess: null,
 };
 
+export const handle_checkout_payment_success = createAsyncThunk(
+  "handle_checkout_payment_success",
+  async (payload, { getState }) => {
+    const state = getState();
+    const token = state.authentication.access_token;
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+    console.log("inside check out handle_checkout_payment_success");
+
+    const url = "http://localhost:8000/api/payment/check-out-success/payment/";
+    const response = await axios.post(url, payload, { headers });
+    return response.data;
+  }
+);
+
+export const verify_check_out_payment = createAsyncThunk(
+  "verify_check_out_payment",
+  async (payload, { getState }) => {
+    const state = getState();
+    const token = state.authentication.access_token;
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    const url = "http://localhost:8000/api/payment/check-out-verify-payment/";
+    const response = await axios.post(url, payload, { headers });
+    return response.data;
+  }
+);
+
+export const check_out_payment = createAsyncThunk(
+  "check_out_payment",
+  async (_, { getState }) => {
+    const state = getState();
+    const token = state.authentication.access_token;
+    console.log(token);
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    };
+
+    console.log("inside checkout order function");
+    const url = "http://localhost:8000/api/payment/check-out-payment/";
+    const response = await axios.post(url, {}, { headers });
+    return response.data;
+  }
+);
+
 export const create_order = createAsyncThunk(
   "create_order",
   async (product_id, { getState }) => {
@@ -16,6 +68,7 @@ export const create_order = createAsyncThunk(
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     };
+    console.log("inside create order function");
     const create_order_payload = { id: product_id };
     const url = "http://localhost:8000/api/payment/create/order/";
     const response = await axios.post(url, create_order_payload, { headers });

@@ -61,8 +61,16 @@ const PaymentComponent = ({ product_id }) => {
 
   return (
     <div>
-      <button onClick={() => handlePayment(product_id)}>
-        Pay with Razorpay
+      <button
+        className="btn btn-danger btn-sm  ms-1"
+        style={{
+          "--bs-btn-padding-y": ".20rem",
+          "--bs-btn-padding-x": ".4rem",
+          "--bs-btn-font-size": ".50rem",
+        }}
+        onClick={() => handlePayment(product_id)}
+      >
+        Buy Now
       </button>
     </div>
   );

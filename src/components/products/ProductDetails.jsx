@@ -62,7 +62,7 @@ function ProductDetails() {
             <p>
               <strong>Quantity in stock:</strong> {product.product_quantity}
             </p>
-            <button className="btn btn-primary">Buy Now</button>
+            {/* <button className="btn btn-primary">Buy Now</button> */}
             <PaymentComponent product_id={product.id} />
             <AddToCart product_id={id} />
           </div>

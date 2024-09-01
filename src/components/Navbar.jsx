@@ -37,11 +37,18 @@ function Navbar() {
               </li>
 
               {is_login ? (
-                <li className="nav-item">
-                  <Link className="nav-link" to="logout">
-                    Logout
-                  </Link>
-                </li>
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="logout">
+                      Logout
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="orders">
+                      orders
+                    </Link>
+                  </li>
+                </>
               ) : (
                 <>
                   <li className="nav-item">

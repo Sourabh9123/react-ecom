@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddToCart from "../Cart/AddToCart";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import RazorpayPayment from "../payments/RazorpayPayment";
 
 const Product = () => {
   const [productItems, setProductItems] = useState([]);
@@ -58,8 +59,8 @@ const Product = () => {
                   </p>
 
                   <AddToCart product_id={item.id} />
-                  <button
-                    className="btn btn-danger btn-sm ms-1"
+
+                  {/* <button className="btn btn-danger btn-sm ms-1"
                     style={{
                       "--bs-btn-padding-y": ".20rem",
                       "--bs-btn-padding-x": ".4rem",
@@ -67,7 +68,8 @@ const Product = () => {
                     }}
                   >
                     Buy Now
-                  </button>
+                  </button> */}
+                  <RazorpayPayment product_id={item.id} />
                 </div>
               </div>
             </div>
