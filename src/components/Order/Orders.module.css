@@ -1,0 +1,28 @@
+
+
+
+.heading{
+    color: blueviolet;
+    display :flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper{
+    margin: 1vw;
+    display: flex;
+  
+
+}
+
+.wrapper > img {
+    width: 15vw;
+    height: 15vh;
+    margin: 0 2vw;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

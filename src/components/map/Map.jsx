@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-// Set default icon for leaflet to fix missing marker issue in React
+// Fix missing marker issue in React with Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl:
@@ -13,78 +13,68 @@ L.Icon.Default.mergeOptions({
 });
 
 const Map = () => {
-  const [locationData, setLocationData] = useState({
-    latitude: 22.540282765647326,
-    longitude: 88.32046458913354,
-  });
-  //22.540282765647326, 88.32046458913354
-  //write a function which takes w parameter and return sum of it
+  const fetchLocationByIP = async () => {
+    try {
+      const response = await fetch("https://ipapi.co/json/");
+      const data = await response.json();
+      console.log(data, "------------------------------------");
+      const { latitude, longitude, city, region, country } = data;
+      console.log(
+        "IP-Based Location -> Latitude: ",
+        latitude,
+        "Longitude: ",
+        longitude
+      );
+      // setLocationData({ latitude, longitude });
+      console.log("state", locationData);
+    } catch (error) {
+      console.error("Error fetching IP-based location: ", error);
+    }
+  };
 
-  const get_permisstion_land_long = async () => {
+  const [locationData, setLocationData] = useState({
+    latitude: 22.5,
+    longitude: 88.3,
+  });
+  const [loading, setLoading] = useState(true);
+
+  const getPermissionLandLong = () => {
     const options = {
-      enableHighAccuracy: true, // Request high accuracy
-      timeout: 5000, // Maximum time to wait for a response
-      maximumAge: 0, // Don't use a cached location
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0,
     };
 
     navigator.geolocation.getCurrentPosition(
-      async (position) => {
+      (position) => {
         const { latitude, longitude } = position.coords;
-        console.log("Latitude: ", latitude, "Longitude: ", longitude);
-        await setLocationData((prevState) => ({
+        console.log(
+          "Exact Location -> Latitude: ",
           latitude,
-          longitude,
-        }));
-        console.log(locationData);
-        // You can now send the latitude and longitude to the server
+          "Longitude: ",
+          longitude
+        );
+        setLocationData({ latitude, longitude });
+        setLoading(false); // Set loading to false once location is retrieved
       },
       (error) => {
         console.error("Error fetching location: ", error);
-      }
+        setLoading(false); // Stop loading even if there's an error
+      },
+      options
     );
   };
 
-  // Fetch location from the DRF backend
   useEffect(() => {
-    get_permisstion_land_long();
-    // navigator.geolocation.getCurrentPosition(
-    //   (position) => {
-    //     const { latitude, longitude } = position.coords;
-    //     console.log("Latitude: ", latitude, "Longitude: ", longitude);
-    //     setLocationData(latitude, longitude);
-    //     // You can now send the latitude and longitude to the server
-    //   },
-    //   (error) => {
-    //     console.error("Error fetching location: ", error);
-    //   }
-    // );
-
-    const { latitude, longitude } = locationData;
-
-    const fetchLocation = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/map/location/"); // DRF endpoint
-        const data = await response.json();
-        console.log(response, " -------------------------");
-        setLocationData(data);
-      } catch (error) {
-        console.error("Error fetching location:", error);
-      }
-    };
-
-    // fetchLocation();
+    getPermissionLandLong();
+    fetchLocationByIP();
   }, []);
 
-  if (!locationData) {
+  if (loading) {
     return <div>Loading map...</div>;
   }
 
-  // const { latitude, longitude, city, region, country } = locationData;
   const { latitude, longitude } = locationData;
-  const city = "";
-  const region = "";
-  const country = "";
-  console.log("after , ", latitude, longitude);
 
   return (
     <MapContainer
@@ -97,9 +87,9 @@ const Map = () => {
         attribution='© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <Marker position={[latitude, longitude]}>
-        {/* <Popup>
-          {city}, {region}, {country}
-        </Popup> */}
+        <Popup>
+          Current Location: {latitude.toFixed(7)}, {longitude.toFixed(7)}
+        </Popup>
       </Marker>
     </MapContainer>
   );
